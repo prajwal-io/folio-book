@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Folio — Personal Digital Library</title>
+    <meta
+      name="description"
+      content="A calm, mobile-first personal digital library for discovering and reading legally free books and novels across genres."
+    />
+    <meta property="og:title" content="Folio — Personal Digital Library" />
+    <meta
+      property="og:description"
+      content="A calm, mobile-first personal digital library for discovering and reading legally free books and novels across genres."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#FBF9F5" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Folio" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      (function () {
+        try {
+          var raw = localStorage.getItem('folio-preferences');
+          var appTheme = 'system';
+          if (raw) {
+            var parsed = JSON.parse(raw);
+            if (parsed && (parsed.appTheme === 'light' || parsed.appTheme === 'dark' || parsed.appTheme === 'system')) {
+              appTheme = parsed.appTheme;
+            }
+          }
+          var systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var isDark = appTheme === 'dark' || (appTheme === 'system' && systemDark);
+          document.documentElement.classList.toggle('dark', isDark);
+          document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute('content', isDark ? '#141210' : '#FBF9F5');
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="bg-[#FBF9F5] text-[#1C1917] dark:bg-[#141210] dark:text-[#F3EFE8] antialiased selection:bg-[#1E3A5F]/15 dark:selection:bg-[#7BA3D1]/25">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
